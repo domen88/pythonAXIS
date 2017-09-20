@@ -5,35 +5,16 @@
 # dscotece, msolimando
 #
 
-import urllib2
-import time
-import datetime
+import wget
 
-
-def image():
-    ts = time.time()
-    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d_%H:%M:%S')
-    url = 'https://b.thumbs.redditmedia.com/0jcpyxFCewwL8R611kJgoCUxXxqGtDow56YlsO8lAxY.png'
-    imgfile = urllib2.urlopen(url)
-    name = 'test' + st + '.png'
-    output = open(name, 'wb')
-    output.write(imgfile.read())
-    output.close()
-
-def video():
+def video(hostname):
     #start record
-    time.sleep(61)
-    #stop record
-
+    url = 'http://' + hostname + '/axis-cgi/mjpg/video.cgi?duration=60'
+    wget.download(url)
 
 def main():
-    arg_defaults = {
-        'hostname': '192.168.0.90',       # default IP address
-        'username': 'root',               # default login name
-        'password': ''
-    }
-
-    image()
+    hostname = '192.168.0.90'        # default IP address
+    video(hostname)
 
 if __name__ == "__main__":
     main()
