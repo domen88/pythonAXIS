@@ -6,11 +6,16 @@
 #
 
 import wget
+import time
+import datetime
 
 def video(hostname):
     #start record
     url = 'http://' + hostname + '/axis-cgi/mjpg/video.cgi?duration=60'
-    path = '/mnt/'
+    ts = time.time()
+    st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d-%H:%M:%S')
+    file_name = 'video-' + st + '.mjpg'
+    path = '/mnt/' + file_name
     wget.download(url, path)
 
 def main():
