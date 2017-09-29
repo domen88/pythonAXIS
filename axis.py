@@ -10,7 +10,8 @@ import wget
 def video(hostname):
     #start record
     url = 'http://' + hostname + '/axis-cgi/mjpg/video.cgi?duration=60'
-    wget.download(url)
+    path = '/mnt/'
+    wget.download(url, path)
 
 def main():
     hostname = '192.168.0.90'        # default IP address
